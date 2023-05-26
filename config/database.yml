@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  port:     5432
+  username: deploy
+  password: root@123
+
+development:
+  <<: *default
+  host:     localhost
+  port:     5432
+  username: deploy
+  password: root@123
+  database: 'exoticgrouptravel'
+
+production:
+  <<: *default
+  host:     82.180.132.184
+  port:     5432
+  username: deploy
+  password: root@123
+  database: 'exoticgrouptravel'
+
