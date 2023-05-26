@@ -2,8 +2,8 @@
 lock "~> 3.17.1"
 
 set :application, "exoticgrouptravel"
-set :repo_url, "https://github.com/AhsanAkbar252/exoticgrouptravel.git"
-set :branch, 'main'
+set :repo_url, "https://github.com/Muhammad-awaisMurtaza/exoticgrouptravel.git"
+set :branch, 'master'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
