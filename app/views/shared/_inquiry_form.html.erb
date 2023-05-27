@@ -62,7 +62,16 @@
       <%= form.label :trip_idea_id %>*<br>
     </div>
     <div class="col-md-6">
-        <%= form.select(:trip_idea_id, options_for_select(TripIdea.active.map{|c|[c.name, c.id]}), { prompt: 'Select Trip idea' }, { :class => 'form-control' }) %>
+        <%= form.select(:trip_idea_id, options_for_select(TripIdea.active.map{|c|[c.name, c.id]}), { prompt: 'Select Trip idea' }, { :class => 'form-control', required: true }) %>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <p class="m-0 small">Trip Purpose?*</p>
+    </div>
+    <div class="col-md-6">
+      <%= form.select(:trip_purpose, Inquiry.trip_purposes.keys.map {|title| [title.titleize, title]}, {prompt: 'Select Trip Purpose'}, { class: 'form-control', required: true})%>
     </div>
   </div>
 
@@ -101,17 +110,6 @@
     <%= form.number_field :no_of_passenger, min:1, class: "w-100 selectBorder" %>
     </div>
   </div>
-
-
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <p class="m-0 small">Date of departure*</p>
-    </div>
-    <div class="col-md-6">
-    <%= form.date_select :departure_date, {}, min: Date.today, class: "selectBorder" %> 
-    </div>
-  </div>
-
 
   <div class="row mb-2">
     <div class="col-md-12">

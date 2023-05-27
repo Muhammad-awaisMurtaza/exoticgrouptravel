@@ -74,6 +74,13 @@
       </div>
     </div>
 
+    <div class="row mb-4">
+      <div class="col-md-12">
+      <%= form.label :trip_purpose %><br>
+      <%= form.text_field :trip_purpose, class: "form-control", value: @inquiry.trip_purpose, readonly: true %>
+      </div>
+    </div>
+
       <div class="row mb-4">
         <div class="col-md-12">
         <p class="m-0 small">How should we contact you?*</p>
@@ -88,14 +95,6 @@
         </div>
       </div>
 
-      <div class="row mb-4">
-        <p class="m-0 small">Date of departure*</p>
-      <div class="col-md-12">
-      <%= form.date_select :departure_date, {}, value: @inquiry.departure_date, class: "selectBorder" %> 
-      </div>
-    </div>
-    
-    
       <div class="row mb-4">
     
         <div class="col-md-12">

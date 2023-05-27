@@ -21,7 +21,9 @@ Rails.application.routes.draw do
         resources :users, only: %i[edit show update]
         resources :countries
         resources :regions
-        resources :tours
+        resources :tours do
+          post :sort, on: :collection
+        end
         resources :pages
         resources :inquiries
         resources :trip_ideas

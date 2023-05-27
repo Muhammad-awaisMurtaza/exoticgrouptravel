@@ -1,10 +1,11 @@
 module Admin
     class ToursController < AdminController
         before_action :set_tour, only: %i[edit update destroy show] 
-        before_action :authenticate_admin_user!
+        before_action :authenticate_admin_user!, except: :sort
+        skip_before_action :verify_authenticity_token, only: :sort
 
         def index
-            @tours = Tour.order(:id)
+            @tours = Tour.order(:sort)
         end
 
         def new
@@ -42,6 +43,14 @@ module Admin
                 flash['error'] = "Unexpected error occured"
                 redirect_to @tour
             end
+        end
+
+        def sort
+          start_sort = Tour.where(sort: params[:sort_ids]).minimum(:sort)
+          params[:sort_ids].each_with_index do |sort_id, i|
+            id, sort = sort_id.split("-")
+            Tour.find_by(id: id, sort: sort).update_column(:sort, start_sort + i)
+          end
         end
 
         private

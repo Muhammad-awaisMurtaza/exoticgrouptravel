@@ -12,6 +12,6 @@ class InquiriesController < ApplicationController
     private
 
     def permitted_params
-        params.permit(:first_name, :last_name, :title, :price, :customer_type, :country, :phone, :trip_idea_id, :email, :contact_method, :no_of_passenger, :departure_date, :description, :tour_id)
+        params.permit(:first_name, :last_name, :title, :price, :customer_type, :country, :phone, :trip_idea_id, :email, :contact_method, :no_of_passenger, :departure_date, :description, :tour_id, :trip_purpose)
     end
 end

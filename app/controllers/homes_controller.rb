@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
     def index
-        @tours = Tour.featured.limit(12)
+        @tours = Tour.featured.order(:sort).limit(12)
         @page = Page.new
         render "homes/index"
     end

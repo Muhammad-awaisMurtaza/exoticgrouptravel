@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_22_121709) do
+ActiveRecord::Schema.define(version: 2023_04_21_103109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 2023_01_22_121709) do
     t.bigint "tour_id"
     t.string "price"
     t.bigint "trip_idea_id"
+    t.integer "trip_purpose"
     t.index ["tour_id"], name: "index_inquiries_on_tour_id"
     t.index ["trip_idea_id"], name: "index_inquiries_on_trip_idea_id"
   end
@@ -154,6 +155,7 @@ ActiveRecord::Schema.define(version: 2023_01_22_121709) do
     t.boolean "featured", default: true
     t.string "short_description"
     t.bigint "trip_idea_id"
+    t.integer "sort"
     t.index ["country_id"], name: "index_tours_on_country_id"
     t.index ["trip_idea_id"], name: "index_tours_on_trip_idea_id"
   end

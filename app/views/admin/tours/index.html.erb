@@ -19,9 +19,9 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody class="table-border-bottom-0">
+            <tbody id="tour-tabel">
                 <% @tours.each_with_index do |tour, index| %>
-                <tr>
+                <tr id="<%=tour.id%>-<%=tour.sort%>" draggable="true" ondragstart="start()"  ondragover="dragover()" ondrop="drop()">
                     <td><%= index+1 %>  </td>
                     <td><%= tour.destination_name %>  </td>
                     <td><%= tour.country.name %>  </td>
@@ -41,3 +41,45 @@
    
    
     </div>
+
+<script>
+  var row;
+
+  function start() {  
+    row = event.target; 
+  }
+
+  function dragover() {
+    var e = event;
+    e.preventDefault(); 
+    
+    let children= Array.from(e.target.parentNode.parentNode.children);
+    
+    if(children.indexOf(e.target.parentNode)>children.indexOf(row))
+      e.target.parentNode.after(row);
+    else
+      e.target.parentNode.before(row);
+  }
+
+  function drop(e) {
+    let ids = []
+    let rows = document.getElementById("tour-tabel").children;
+    for(let i = 0; i < rows.length; i++) {
+      ids.push(rows[i].id);
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '/admin/tours/sort',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        sort_ids: ids
+      }),
+    }).done(
+        function() {
+          location.reload();
+        }
+    );;
+  }
+</script>
